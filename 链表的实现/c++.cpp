@@ -162,3 +162,36 @@ Node * merge(Node* pHead1, Node* pHead2){
 	}
 	return mergeNode;
 }
+
+//从头到尾打印链表 面试题5
+//解法一
+void printReverse(Node* pHead){
+	if (pHead == Null)
+	{
+		return;
+	}
+	Node* currentNode = pHead;
+	std::stack<Node*> Nodes;
+	while(currentNode != Null){
+		Nodes.push(currentNode);
+		currentNode = currentNode->next;
+	}
+
+	while(!Nodes.empty()){
+		currentNode = Nodes.pop();
+		cout<<currentNode->value<<endl;
+	}
+}
+
+//解法二
+void printReverse(Node* pHead){
+	if (pHead == Null)
+	{
+		return;
+	}
+	if (pHead->next != Null)
+	{
+		printReverse(pHead->next);
+	}
+	cont<<pHead->value<<endl;
+}
