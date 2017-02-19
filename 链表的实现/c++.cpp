@@ -85,3 +85,80 @@ Node * reverseList(Node * head){
 	
 	return head;
 }
+
+//输出链表中倒数第K个节点（没有定义空的头结点的）
+Node * FindKthToTail(Node * pHead, unsigned int k){
+	if(pHead == NULL || k==0){
+		return Null;
+	}
+	Node * pAhead = pHead;
+	Node * pBehind = Null;
+	for (int i = 0; i < k -1; ++i)
+	{
+		pBehind = pAhead->next;
+		if (pBehind == Null)
+		{
+			return NULL;
+		}
+	}
+	while(pBehind->next != NULL){
+		pBehind = pBehind->next;
+		pAhead = pAhead->next;
+	}
+
+	return pAhead;
+
+
+}
+
+//在O(1)时间删除链表节点，给定了头指针和一个节点指针（没有定义空的头结点）
+void  deleteNode(Node* phead, Node* pToBeDelete){
+	if (pHead == Null || pToBeDelete ==Null)
+	{
+		return;
+	}
+	if (pToBeDelete->next != Null)
+	{
+		Node * pNext = pToBeDelete->next;
+		pToBeDelete->value = pNext->value;
+		pToBeDelete->next = pNext->next;
+		delete pNext;
+		pNext = Null;
+	}
+	else if(pHead == pToBeDelete){
+		delete pToBeDelete;
+		pToBeDelete = Null;
+		pHead = Null;
+	}
+	else {
+		Node * pNode = pHead;
+		while(pNode->next != pToBeDelete){
+			pNode = pNode->next;
+		}
+		pNode->next = Null;
+		delete pToBeDelete;
+		pToBeDelete = Null;
+	}
+}
+
+//面17
+Node * merge(Node* pHead1, Node* pHead2){
+	if (pHead1 == Null)
+	{
+		return pHead2;
+	}
+	else if (pHead2 == Null){
+		return pHead1;
+	}
+	Node* mergeNode  = Null;
+	if (pHead1->value < pHead2->value)
+	{
+		mergeNode = pHead1;
+		mergeNode->next = merge(pHead1->next, pHead2);
+	}
+	else {
+		mergeNode = pHead2;
+		mergeNode->next =merge(pHead1, pHead2->next);
+	}
+	return mergeNode;
+}
