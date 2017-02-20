@@ -1,15 +1,15 @@
 template <class T> class BSTNode{
 	public:
 		T key;
-		Node * left;
-		Node * right;
-		Node * parent;
-		Node(T value, Node * p, Node * l, Node * r);
+		BSTNode * left;
+		BSTNode * right;
+		BSTNode * parent;
+		BSTNode(T value, BSTNode * p, BSTNode * l, BSTNode * r);
 }
 
 template <class T> class BSTree{
 	private:
-		Node<T> *mRoot;
+		BSTNode<T> *mRoot;
 
 	public:
 		BSTree();
