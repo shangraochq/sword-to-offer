@@ -111,3 +111,26 @@ function find(value){
 
 //删除给定值节点
 
+
+
+
+
+//面试题23 从上往下打印二叉树，即宽度优先遍历
+function printFromToBottom(){
+	if (this.root == null) {
+		return;
+	}
+	var quene = new Queue();
+	quene.enqueue(this.root);
+	while(!quene.empty()){
+		var currentNode = quene.front();
+		print(currentNode.value);
+		quene.dequeue();
+		if (currentNode.left) {
+			quene.enqueue(currentNode.left);
+		}
+		if (currentNode.right) {
+			quene.enqueue(currentNode.right);
+		}
+	}
+}

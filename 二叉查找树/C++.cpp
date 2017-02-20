@@ -229,3 +229,27 @@ template <class T> void BSTree<T>::insert(T key){
 	z = new BSTNode<T>(key, NULL, NULL, NULL);
 	insert(mRoot, z);
 }
+
+
+//面试题23 从上往下打印二叉树，即宽度优先遍历
+void printFromTopToBottom(Node * pRoot){
+	if (pRoot == NULL)
+	{
+		return;
+	}
+	std::deque<Node*> dequeNodes;
+	dequeNodes.push_back(pRoot);
+	while(dequeNodes.size()){
+		Node * currentNode = dequeNodes.front();
+		dequeNodes.pop_front();
+		cout<<currentNode->value>>" ";
+		if (currentNode->left != NULL)
+		{	
+			dequeNodes.push_back(dequeNodes->left);
+		}
+		if (currentNode->right != NULL)
+		{
+			dequeNodes.push_back(dequeNodes->right);
+		}
+	}
+}
