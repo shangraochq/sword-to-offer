@@ -9,6 +9,7 @@ function verifySquenceOfBST(array){
 			break;
 		}
 	}
+	
 
 	var j = i;
 	for (j; j < length - 1; j++) {
