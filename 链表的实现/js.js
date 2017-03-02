@@ -86,3 +86,20 @@ cities.insert("Conway", "head");
 cities.insert("Russellville", "Conway");
 cities.insert("Alma", "Russellville");
 cities.display();
+
+
+
+//从尾到头打印链表
+function printFromTailToHead(Head) {
+	var arr = [];
+	var pNode = Head;
+	while(pNode.next !== null) {
+		arr.push(pNode.next);
+		pNode = pNode.next;
+	}
+	var length = arr.length;
+	while(length > 0){
+		console.log(arr.pop());
+		length--;
+	}
+}
