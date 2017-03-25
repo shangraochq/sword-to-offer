@@ -24,3 +24,18 @@ function top() {
 function isEmpty() {
 	return this.peek == 0 ? true : false;
 }
+
+
+//十进制转化为2-9镜子
+function numBased(num, base) {
+	var s = new Stack();
+	while(num > 0) {
+		s.push(num % base);
+		num  = Math.floor(num/2);
+	}
+	var result = '';
+	return result += s.pop();
+}
+
+
+

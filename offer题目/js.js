@@ -59,14 +59,16 @@ console.log(array);
 
 
 //23从上往下打印二叉树
-function print(rootNode) {
-	if (rootNode === null) {
+function print(root) {
+	if (root === null) {
 		return;
 	}
 	var array = [];
-	arrar.push(rootNode);
-	while(rootNode.length === 0){
+	array.push(root);
+	console.log(array.length);
+	while(array.length !== 0){
 		var pNode = array.shift();
+		console.log(pNode.val);
 		if (pNode.left) {
 			array.push(pNode.left);
 		}
@@ -75,6 +77,8 @@ function print(rootNode) {
 		}
 	}
 }
+
+	``
 
 //31连续子数组的最大和
 function findMax(array) {
@@ -177,5 +181,149 @@ function FirstNoRepeatChar(string) {
 	}
 }
 
-//
+//深复制
+function DeepCopy(obj) {
+	if (Object.prototype.toString.call(obj) === "[object Object]") {
+		var result = {};	
+		for (i in obj){
+			result[i] = DeepCopy(obj[i]);
+			console.log(1);
+		}
+		
+		return result;
+	}
+	else if (Object.prototype.toString.call(obj) === "[object Array]") {
+		var result = [];
+		for(var i = 0; i < obj.length; i++) {
+			console.log(3);
+			result[i] = DeepCopy(obj[i]);
+		}
+
+		return result;
+	}
+	else {
+		console.log(2);
+		return obj;
+	}
+}
+
+var chq1 = {
+	a:1,
+	b:2,
+	c:[1,2,3]
+}
+
+chq2 = DeepCopy(chq1);
+chq2.c.push(4);
+console.log(chq1.c);
+console.log(chq2.c);
+
+//HelloWorld => hello_world
+function fn(str) {
+	var str = str.replace(/^\s*|\s*$/, '');
+	var firstChar = str[0];
+	str = str.replace(firstChar, firstChar.toLowerCase());
+	arr = str.split('');
+	var reg = /[A-Z]/;
+	arr = arr.map(function(item){
+		if (reg.test(item)) {
+			return '_' + item.toLowerCase();
+		}
+		else return item;
+	});
+	str = arr.join('');
+	return str;
+
+}
+fn(" HelloWorldMap");
+
+
+
+//面试题41，和为s的两个数字
+function FindNumberSum(arr, sum) {
+	if (Object.prototype.toString.call(arr) === "object Array") {
+		return;
+	}
+	var preIndex = 0, 
+		LastIndex = arr.length -1;
+	while(preIndex < LastIndex) {
+		if (arr[preIndex] + arr[LastIndex] > sum) {
+			LastIndex--;
+		}
+		else if (arr[preIndex] + arr[LastIndex] < sum) {
+			preIndex++;
+		}
+		else {
+			console.log("fisrtnumber:" + arr[preIndex] + ";" + "secondnumber:" + arr[LastIndex] );
+			break;
+		}
+	} 
+	return;
+}
+var arr = [1,2,4,7,11,15];
+FindNumberSum(arr,3);
+
+
+
+//面试题42，翻转单词顺序
+function ReverseString(str) {
+	var CopyString = "",
+		length = str.length,
+		i = length - 1;
+	while(i > -1){
+		CopyString += str[i];
+		i--;
+	}
+	return CopyString;
+}
+function ReverseSentence(str){
+	var CopySenatence = "",
+		strArray = [];
+	str = ReverseString(str);
+
+	strArray = str.split(/\s+/);
+	for(var i = 0; i < strArray.length; i++) {
+		CopySenatence = CopySenatence + " " + ReverseString(strArray[i]) ;
+	}
+	return CopySenatence;
+
+
+}
+var string = "i am a student.";
+ReverseSentence(string);
+
+//面试题44，扑克牌的顺子·1
+function isContinued(arr) {
+	if (Object.prototype.toString.call(arr) !== "object Array") {
+		return new Error("argument is not an Array");
+	}
+	var sortArr = arr.sort(function(a,b){
+		return a-b;
+	});
+	var length = sortArr.length,
+		zeroCount = 0;
+	for(var i = 0; i < length; i++){
+		if (sortArr[i] === 0) {
+			zeroCount++;
+		}
+	}
+	var gapCount = 0;
+	for(var j = 0; j <length - 1; j++){
+		if (sortArr[j] === sortArr[j + 1]) {
+			return false;
+		}
+		gapCount += (sortArr[j + 1] - sortArr[j] - 1);
+	}
+
+	if (gapCount <= zeroCount) {
+		return true;
+	}
+	else return false;
+
+
+}
+var arr = 1
+isContinued(arr);
+
+
 

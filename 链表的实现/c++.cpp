@@ -67,7 +67,7 @@ void del(Node *p){
 	delete q;
 }
 
-//反转链表
+//反转链表 
 Node * reverseList(Node * head){
 	Node* reverseHead = NULL;
 	Node* p = head->next;//我的链表在链首有一个空节点

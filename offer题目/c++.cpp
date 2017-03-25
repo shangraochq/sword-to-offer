@@ -222,6 +222,40 @@ int findMax(int * pData, int length) {
 
 
 
+//39二叉树深度
+int getDepthOfTree(BinaryTreeNode* pRoot) {
+
+	if (pRoot == NULL)
+	{
+		return 0;
+	}
+	int leftDepth = getDepthOfTree(pRoot->left);
+	int rightDepth = getDepthOfTree(pRoot->right);
+	return leftDepth > rightDepth ? (leftDepth + 1) : (rightDepth + 1);
+}
+
+//39的题目二
+bool isBalanceTree(BinaryTreeNode* pRoot) {
+
+	if (pRoot == NULL)
+	{
+		return true;
+	}
+	int leftDepth = getDepthOfTree(pRoot->left);
+	int rightDepth = getDepthOfTree(pRoot->right);
+	int diff = leftDepth - rightDepth;
+	if (diff > 1 || diff < -1)
+	{
+		return false;
+	}
+
+	return isBalanceTree(pRoot->left)&&isBalanceTree(pRoot->right);
+
+
+}
+
+
+
 
 
 

@@ -70,3 +70,4 @@ int ArrayStack<T>::isEmpty()
 {
     return size()==0;
 }    
+

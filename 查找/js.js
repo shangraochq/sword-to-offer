@@ -21,4 +21,5 @@ function binSearch(arr, data) {
 	
 }
 
-/
+var a = [1,2,3,4,5];
+console.log(binSearch(a,3));
