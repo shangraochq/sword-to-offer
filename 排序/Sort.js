@@ -1,23 +1,33 @@
 //冒泡排序
-function bubbleSort(arr) {
+function bubbleSort(arr){
+	if (Object.prototype.toString.call(arr) !== "[object Array]" || arr.length === 0) {
+		return;
+	}
 	var length = arr.length;
-	var tmp;
-	for( var i = length - 1; i > 0; i--){
+	
+	for (var i = length -1; i > 0; i--) {
 		var flag = 0;
-		for( var j = 0; j < i; j++){
-			if (arr[j] > arr[j + 1]) {
-				tmp = arr[j];
+		for(var j = 0;  j < i - 1; j++){
+			if (arr[j] > arr[j+1]) {
+				var tmp = arr[j];
 				arr[j] = arr[j+1];
 				arr[j+1] = tmp;
 				flag = 1;
 			}
 		}
-
-		if (flag == 0) {
+		if (flag === 0) {
 			break;
 		}
 	}
 }
+
+
+
+
+
+
+
+
 
 //选择排序
 function selectSort(arr) {
@@ -78,7 +88,6 @@ function qSort(arr)
 	}
 	return qSort(left).concat(pivot, qSort(right));
 }
-
 
 //希尔排序
 

@@ -92,7 +92,7 @@ function getMax(){
 //查找给定值
 function find(value){
 	var currentNode = this.root;
-	if (currentNode == node) {
+	if (currentNode == null) {
 		return null;
 	}
 	while(currentNode != null){
